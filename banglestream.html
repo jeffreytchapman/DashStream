@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BangleStream01</title>
+  <title>BangleStream02</title>
  </head>
  <body>
 <script src="https://www.puck-js.com/puck.js"></script>
@@ -10,8 +10,8 @@
 <p>Z: <span class="bar"><span id="barZ"></span></span></p>
 <script>
 // Code to upload to Bangle.js
-var BANGLE_CODE = `
-Bangle.on('accel',function(a) {
+var PUCK_CODE = `
+Puck.on('accel',function(a) {
   var d = [
     "A",
     Math.round(a.x*100),
@@ -51,7 +51,7 @@ document.getElementById("btnConnect").addEventListener("click", function() {
       // Wait for it to reset itself
       setTimeout(function() {
         // Now upload our code to it
-        connection.write("\x03\x10if(1){"+BANGLE_CODE+"}\n",
+        connection.write("\x03\x10if(1){"+PUCK_CODE+"}\n",
           function() { console.log("Ready..."); });
       }, 1500);
     });
