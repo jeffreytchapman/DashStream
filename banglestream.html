@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BangleStream02</title>
+  <title>BangleStream01</title>
  </head>
  <body>
 <script src="https://www.puck-js.com/puck.js"></script>
@@ -10,16 +10,15 @@
 <p>Z: <span class="bar"><span id="barZ"></span></span></p>
 <script>
 // Code to upload to Bangle.js
-var PUCK_CODE = `
+var BANGLE_CODE = `
 Puck.on('accel',function(a) {
   var d = [
     "A",
-    Math.round(a.x*100),
-    Math.round(a.y*100),
-    Math.round(a.z*100)
+    a.acc.x, a.acc.y, a.acc.z
     ];
   Bluetooth.println(d.join(","));
-})
+});
+Puck.accelOn();
 `;
 
 // When we click the connect button...
@@ -51,7 +50,7 @@ document.getElementById("btnConnect").addEventListener("click", function() {
       // Wait for it to reset itself
       setTimeout(function() {
         // Now upload our code to it
-        connection.write("\x03\x10if(1){"+PUCK_CODE+"}\n",
+        connection.write("\x03\x10if(1){"+BANGLE_CODE+"}\n",
           function() { console.log("Ready..."); });
       }, 1500);
     });
@@ -66,9 +65,9 @@ function onLine(line) {
   if (d.length==4 && d[0]=="A") {
     // we have an accelerometer reading
     var accel = {
-      x : parseInt(d[1]),
-      y : parseInt(d[2]),
-      z : parseInt(d[3]),
+      x : parseInt(d[1]) * 100 / 8192,
+      y : parseInt(d[2]) * 100 / 8192,
+      z : parseInt(d[3]) * 100 / 8192,
     };    
     // Update bar positions
     setBarPos("barX", accel.x);
