@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BulbStream01</title>   
+  <title>BulbStream02</title>   
  </head>
  <body>
   <button id="btnConnect">Connect</button>
@@ -45,9 +45,8 @@
         connection.on("data", function(d) {
           buf += d;
           var i = buf.indexOf("\n");
-         console.log("i="+i);
           while (i>=0) {
-           console.log("i="+i);
+           console.log(JSON.stringify(buf.substr(0,i)));
             onLine(buf.substr(0,i));
             buf = buf.substr(i+1);
             i = buf.indexOf("\n");
