@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BulbStream01</title>
+  <title>BulbStream02</title>
    <style>
      body { margin:0;  }
      svg {
@@ -30,7 +30,8 @@
 
     // When clicked, connect or disconnect
     var connection;
-    path.addEventListener("click", function() {
+   
+    document.getElementById("btnConnect").addEventListener("click", function() {
       if (connection) {
         connection.close();
         connection = undefined;
