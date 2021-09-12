@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BulbStream08</title>   
+  <title>BulbStream09</title>   
  </head>
  <body>
   <button id="btnConnect">Connect</button>
@@ -20,9 +20,9 @@
 
     // Called when we get a line of data - updates the light color
     function onLine(v) {
-     console.log("Received="+v.acc.x);
+     //console.log("Received="+v.acc.x);
       //console.log("Received: "+JSON.stringify(v));
-      path.style.fill="rgb("+Math.round(v*255)+",0,0)";
+      //path.style.fill="rgb("+Math.round(v*255)+",0,0)";
     }
 
     // When clicked, connect or disconnect
@@ -45,7 +45,9 @@
         connection.on("data", function(d) {
           buf += d;
           var i = buf.indexOf("\n");
+         console.log("i="+i);
           while (i>=0) {
+           console.log("buf.substr(0,i)="+buf.substr(0,i));
             onLine(buf.substr(0,i));
             buf = buf.substr(i+1);
             i = buf.indexOf("\n");
