@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>BulbStream06</title>   
+  <title>BulbStream07</title>   
  </head>
  <body>
   <button id="btnConnect">Connect</button>
@@ -20,7 +20,8 @@
 
     // Called when we get a line of data - updates the light color
     function onLine(v) {
-      console.log("Received: "+JSON.stringify(v));
+     console.log("Received="+v);
+      //console.log("Received: "+JSON.stringify(v));
       path.style.fill="rgb("+Math.round(v*255)+",0,0)";
     }
 
